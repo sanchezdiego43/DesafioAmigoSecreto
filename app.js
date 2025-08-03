@@ -10,12 +10,13 @@ function asignarTextoElemento(elemento, texto){
 
 function agregarAmigo() {
     let amigo= document.getElementById("amigo").value
+     asignarTextoElemento('resultado',"")
     if (amigo == "") {
         alert("Debe ingresar un valor");    
     } else {
-        Amigos.push(amigo)
-        asignarTextoElemento('listaAmigos',Amigos)
-        limpiarCaja('amigo');
+        Amigos.push(amigo);
+        asignarTextoElemento('listaAmigos',Amigos);
+        limpiarCaja();
     }
     return;
 }
@@ -24,11 +25,22 @@ function agregarAmigo() {
 function sortearAmigo() {
     let numeroGenerado= Math.floor(Math.random()*(Amigos.length));
     amigoSorteado=Amigos[numeroGenerado];
-    asignarTextoElemento('resultado',amigoSorteado);
+    asignarTextoElemento('resultado',`El amigo secreto sorteado es ${amigoSorteado}`);
+    reiniciarJuego();
     return;
 }
 
-function limpiarCaja(id) {
-    document.getElementById(id).value="";
+function limpiarCaja() {
+    document.getElementById('amigo').value="";
 }
 
+function condicionesIniciales() {
+    Amigos=[];
+    asignarTextoElemento('listaAmigos',"")
+    return;
+}
+
+function reiniciarJuego() {
+    limpiarCaja();
+    condicionesIniciales();
+}
